@@ -5,17 +5,20 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "API Monitoring is running"
+    return """
+    <h1>API Monitoring</h1>
+    <a href="/health">Voir l'état</a>
+    """
 
 @app.route("/health")
 def health():
     result = subprocess.run(
-        ["pytest"],
+        ["python3", "-m", "pytest", "-q"],
         capture_output=True,
         text=True
     )
 
     return jsonify({
         "status": "OK" if result.returncode == 0 else "FAIL",
-        "tests": result.stdout
+        "details": result.stdout
     })
