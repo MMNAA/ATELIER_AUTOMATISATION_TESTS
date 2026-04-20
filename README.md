@@ -59,7 +59,7 @@ Vous avez vu dans cette séquence comment créer des secrets GiHUB afin de mettr
 Objectif : Travailler sur l'automatisation de vos tests  
 Difficulté : Moyenne (~120 minutes)
 ---------------------------------------------------
-**Consignes : Retrouvez les consignes de votre atelier sur votre site pythonanywhere**    
+**Consignes : Retrouvez les consignes de votre atelier sur votre site PythonAnywhere**    
 Vous pouvez retrouver le travail demandé dans le cadre de cet atelier directement sur votre site pythonanywhere (ex: monuser.pythonanywhere.com).    
    
 --------------------------------------------------------------------
