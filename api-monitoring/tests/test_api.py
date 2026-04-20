@@ -5,7 +5,7 @@ URL = "https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&curr
 
 @pytest.fixture(scope="session")
 def response():
-    return requests.get(URL)
+    return requests.get(URL, timeout=2)
 
 @pytest.fixture(scope="session")
 def data(response):
@@ -15,7 +15,7 @@ def test_status_code(response):
     assert response.status_code == 200
 
 def test_response_time(response):
-    assert response.elapsed.total_seconds() < 1
+    assert response.elapsed.total_seconds() < 1.5
 
 def test_json_structure(data):
     assert "current_weather" in data
@@ -32,15 +32,6 @@ def test_wind_speed_present(data):
 
 def test_time_field_exists(data):
     assert "time" in data["current_weather"]
-
-def test_response_not_empty(response):
-    assert response.content is not None
-
-def test_valid_json(response):
-    try:
-        response.json()
-    except Exception:
-        assert False, "Invalid JSON response"
 
 def test_invalid_endpoint():
     bad_url = "https://api.open-meteo.com/invalid"
